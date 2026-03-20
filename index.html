@@ -1,76 +1,530 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Self Intoduction</title>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나를 소개합니다 – 슌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-light: #ffe0ed;
+            --pink-mid:   #ffb3cc;
+            --pink-hot:   #ff4d8d;
+            --pink-deep:  #d4006e;
+            --text-dark:  #2a0a18;
+        }
 
-        <style type ="text/css">
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-        </style>
-    </head>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(160deg, #fff8fa 0%, #ffcee3 60%, #ffc0da 100%);
+            min-height: 100vh;
+        }
 
-    <body>
+        /* ─────────────────────────────
+           NAVBAR
+        ───────────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(16px);
+            border-bottom: 1.5px solid var(--pink-mid);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 62px;
+        }
 
-        <div class="intro">
-            <h1>나를 소개합니다!</h1>
-            <h2>이름 : Hsu Shune Lei Naing  쑤슌레이나인</h2>
-            <h2>학번 : 20243538</h2>
-            <h3>"슌"이라고 불러주시면 됩니다.</h3>
+        .nav-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.3rem;
+            color: var(--pink-hot);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #a04060;
+            padding: 8px 18px;
+            border-radius: 99px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+        }
+        .nav-links button:hover {
+            background: var(--pink-light);
+            color: var(--pink-hot);
+        }
+        .nav-links button.active {
+            background: var(--pink-hot);
+            color: #fff;
+        }
+
+        /* ─────────────────────────────
+           PAGES
+        ───────────────────────────── */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─────────────────────────────
+           SHARED SECTION STYLES
+        ───────────────────────────── */
+        .section-tag {
+            display: inline-block;
+            background: var(--pink-hot);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .content h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            color: var(--pink-hot);
+            text-shadow: 0 2px 18px rgba(255,77,141,0.18);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--pink-hot), transparent);
+            margin: 22px 0;
+        }
+        .body-text {
+            font-size: 0.97rem;
+            color: #4a1030;
+            line-height: 1.85;
+        }
+
+        /* ─────────────────────────────
+           HOME PAGE
+        ───────────────────────────── */
+        #home .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .profile-pic {
+            width: 40%;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .id-card {
+            background: rgba(255,255,255,0.88);
+            border: 1.5px solid var(--pink-mid);
+            border-radius: 22px;
+            padding: 25px 30px;
+            display: inline-block;
+            box-shadow: 0 6px 28px rgba(255,77,141,0.12);
+        }
+        .id-card .big-name {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--pink-hot);
+            letter-spacing: -1px;
+        }
+        .id-card .full-name {
+            font-size: 1rem;
+            color: #a03060;
+            margin-top: 4px;
+        }
+        .id-card .department {
+            font-size: 1rem;
+            color: #a03060;
+            margin-top: 4px;
+        }
+        .id-card .student-id {
+            font-size: 0.88rem;
+            color: #c06080;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .id-card .mbti {
+            font-size: 0.88rem;
+            color: #c06080;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .id-card .ig {
+            font-size: 0.88rem;
+            color: #c06080;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        .nickname-pill {
+            display: inline-block;
+            background: var(--pink-hot);
+            color: #fff;
+            border-radius: 99px;
+            padding: 7px 22px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        /* hint arrows on home */
+        .home-hint {
+            margin-top: 44px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hint-chip {
+            background: rgba(255,255,255,0.7);
+            border: 1.5px solid var(--pink-mid);
+            border-radius: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            transition: transform 0.15s, background 0.15s;
+        }
+        .hint-chip:hover {
+            background: var(--pink-light);
+            transform: translateY(-3px);
+        }
+
+        /* ─────────────────────────────
+           WHO AM I
+        ───────────────────────────── */
+        .quote-block {
+            background: linear-gradient(135deg, #fff5f9, #ffe8f2);
+            border-left: 4px solid var(--pink-hot);
+            border-radius: 0 16px 16px 0;
+            padding: 18px 24px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin: 24px 0;
+        }
+        .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .chip {
+            background: var(--pink-light);
+            border: 1.5px solid var(--pink-mid);
+            color: var(--pink-deep);
+            border-radius: 99px;
+            padding: 7px 18px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+        .luffy {
+            width: 90%;
+            max-width: 600px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        /* ─────────────────────────────
+           MY WEAPON
+        ───────────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: 0 4px 24px rgba(255,77,141,0.1);
+        }
+        thead th {
+            background: var(--pink-hot);
+            color: #fff;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        tbody td {
+            background: #fff8fb;
+            border-bottom: 1px solid var(--pink-light);
+            padding: 13px 20px;
+            font-size: 0.93rem;
+            color: #3a0a20;
+            text-align: center;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover td { background: #fff0f6; }
+        .note { font-size: 0.8rem; color: #b06080; margin-top: 6px; }
+
+        /* ─────────────────────────────
+           TEAMMATE
+        ───────────────────────────── */
+        .wanted-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 24px 0;
+        }
+        .wanted-list li {
+            background: rgba(255,255,255,0.9);
+            border: 1.5px solid var(--pink-mid);
+            border-radius: 14px;
+            padding: 16px 22px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+        .wanted-list li:hover { transform: translateX(6px); border-color: var(--pink-hot); }
+        .wanted-list li::before {
+            content: "♡";
+            font-size: 1.3rem;
+            color: var(--pink-hot);
+            flex-shrink: 0;
+        }
+        .wanted-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #fff0f6, #ffd8eb);
+            border: 2px dashed var(--pink-hot);
+            border-radius: 16px;
+            padding: 14px 24px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #a03060;
+            font-weight: 700;
+        }
+
+        /* ─────────────────────────────
+           AIM
+        ───────────────────────────── */
+        .goal-box {
+            background: linear-gradient(135deg, #fff0f8, #ffd8eb);
+            border: 2px dashed var(--pink-hot);
+            border-radius: 20px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .goal-box .goal-big {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--pink-hot);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .goal-box p {
+            font-size: 0.97rem;
+            color: #4a1030;
+            line-height: 1.9;
+        }
+
+        /* ─────────────────────────────
+           THANK YOU
+        ───────────────────────────── */
+        .thank-you {
+            margin-top: 60px;
+            text-align: center;
+            padding: 36px 0 10px;
+            border-top: 2px dashed var(--pink-mid);
+        }
+        .ty-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
+        }
+        .ty-big {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: var(--pink-hot);
+            text-shadow: 0 2px 16px rgba(255,77,141,0.2);
+            margin-bottom: 8px;
+        }
+        .ty-sub {
+            font-size: 1rem;
+            color: #a04060;
+            font-weight: 700;
+        }
+
+        /* ─────────────────────────────
+           RESPONSIVE
+        ───────────────────────────── */
+        @media (max-width: 560px) {
+            nav { padding: 0 16px; }
+            .nav-links button { padding: 7px 10px; font-size: 0.8rem; }
+            .nav-logo { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+    <nav>
+        <div class="nav-logo" onclick="goTo('home')">슌 🌸</div>
+        <div class="nav-links">
+            <button onclick="goTo('home')"       id="nav-home"     class="active">Home</button>
+            <button onclick="goTo('whoami')"     id="nav-whoami">나는 이런 사람</button>
+            <button onclick="goTo('weapon')"     id="nav-weapon">내 무기</button>
+            <button onclick="goTo('teammate')"   id="nav-teammate">팀원 구함</button>
+            <button onclick="goTo('aim')"        id="nav-aim">나의 목표</button>
         </div>
+    </nav>
 
-        <div class="whoami">
-            <h1>나는 이렁 사람</h1>
-            <h2>저는 호기심이 많고 깊이 생각하는 사람임니다.</h2>
-            <p>평소에는 그림 그리기와 애니메이션 보는 것을 좋아하지만</p>
-            <h3>요즘은 학교 공부에 더 집중하고 있습니다.</h3>
+    <!-- ══════════ HOME ══════════ -->
+    <div id="home" class="page active">
+        <div class="content">
+            <img src="MyIntro.png" alt="Picture of me" class="profile-pic"> <br>
+            <h1>나를 소개합니다!</h1> <br>
+            <div class="id-card">
+                <div class="big-name">쑤슌레이나인</div>
+                <div class="full-name">Hsu Shune Lei Naing</div>
+                <div class="department">글로벌미디어학부</div>
+                <div class="student-id">학번 : 20243538</div>
+                <div class="mbti">MBTI : INTP</div>
+                <div class="ig">Insta : hsyunl9</div>
+                <span class="nickname-pill">💬 "슌"이라고 불러주시면 됩니다!</span>
+            </div>
+            <div class="home-hint">
+                <div class="hint-chip" onclick="goTo('whoami')">🪞 나는 이런 사람</div>
+                <div class="hint-chip" onclick="goTo('weapon')">⚔️ 내가 들고 오는 무기</div>
+                <div class="hint-chip" onclick="goTo('teammate')">🔍 이런 팀원을 찾습니다</div>
+                <div class="hint-chip" onclick="goTo('aim')">🎯 나의 한 가지 목표</div>
+            </div>
+
+            <div class="thank-you">
+                <span class="ty-emoji">🙇🏻‍♀️</span>
+                <div class="ty-big">감사합니다~</div>
+                <div class="ty-sub">잘 부탁드립니다 🙏🏻</div>
+            </div>
         </div>
+    </div>
 
-        <div class="myweapon">
-            <h1>내가 들고 있는 무기</h1>
-            <table border="1">
-                <tr>
-                    <th>    기술 강점   </th>
-                    <th>    기술 외 강점    </th>
-                </tr>
-                <tr>
-                    <td>C,C++ 기초</td>
-                    <td>상장하려는 의지</td>
-                </tr>
-                <tr>
-                    <td>Javascript 기초</td>
-                    <td>인내심</td>
-                </tr>
-                <tr></tr>
-                    <td>Python 기초</td>
-                    <td>잘 듣는 태도</td>
-                </tr>
-                <tr>
-                    <td>HTML,CSS 기초</td>
-                    <td>다국어 구사</td>
-                </tr>
+    <!-- ══════════ WHO AM I ══════════ -->
+    <div id="whoami" class="page">
+        <div class="content">
+            <span class="section-tag">① SECTION</span>
+            <h1>나는 이런 사람</h1>
+            <div class="divider"></div>
+            <div class="quote-block">" 호기심이 많고 깊이 생각하는 사람 "</div>
+            <p class="body-text">
+                평소에는 그림 그리기와 애니메이션 보는 것을 좋아하지만,<br>
+                요즘은 학교 공부에 더 집중하고 있습니다.
+            </p>
+            <div class="chips">
+                <span class="chip">🎨 그림 그리기</span>
+                <span class="chip">🎌 애니메이션 감상</span>
+                <span class="chip">📚 요즘은 공부 집중 중!</span>
+                <img src="Luffy.JPG" alt="My Drawing" class="luffy">
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ MY WEAPON ══════════ -->
+    <div id="weapon" class="page">
+        <div class="content">
+            <span class="section-tag">② SECTION</span>
+            <h1>내가 들고 오는 무기</h1>
+            <div class="divider"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>🔧 기술 강점</th>
+                        <th>✨ 기술 외 강점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>C / C++ 기초</td><td>성장하려는 의지</td></tr>
+                    <tr><td>JavaScript 기초</td><td>인내심</td></tr>
+                    <tr><td>Python 기초</td><td>잘 듣는 태도</td></tr>
+                    <tr><td>HTML / CSS 기초</td><td>다국어 구사 가능</td></tr>
+                </tbody>
             </table>
-            <h5>** 프로그래밍 언어는 아주 기초 수준입니다. 열심히 배우고 있습니다.</h5>
+            <p class="note">** 프로그래밍 언어는 아직 기초 수준입니다. 열심히 배우고 있습니다! 💪</p>
         </div>
+    </div>
 
-        <div class="teammate">
+    <!-- ══════════ TEAMMATE ══════════ -->
+    <div id="teammate" class="page">
+        <div class="content">
+            <span class="section-tag">③ SECTION</span>
             <h1>이런 팀원을 찾습니다</h1>
-            <h3>
+            <div class="divider"></div>
+            <ul class="wanted-list">
                 <li>서로 도와가며 배우는 사람</li>
                 <li>소통이 잘 되는 사람</li>
-                <li>함께 하고 싶은 마은이 있는 사람</li>
-            </h3>
+                <li>함께 하고 싶은 마음이 있는 사람</li>
+            </ul>
+            <div class="wanted-badge">😄 많은 관심 부탁드립니다!!</div>
         </div>
+    </div>
 
-        <div class="aim">
+    <!-- ══════════ AIM ══════════ -->
+    <div id="aim" class="page">
+        <div class="content">
+            <span class="section-tag">④ SECTION</span>
             <h1>나의 한 가지 목표</h1>
-            <h2>이 수업이 끝나면 나는...</h2>
-            <p>이 수업이 끝나면 저는 웹 프로그래밍에 대한 이해를 더 높이고 기본적인 웹사이트를 스스로 만들 수 있는 사람이 되고 싶습니다. <br>
-            또 팀원들과 함께 프로젝트를 성공적으로 완성하면서 협업 경험도 쌓고 싶슴니다.</p>
+            <div class="divider"></div>
+            <p class="body-text">이 수업이 끝나면 나는...</p>
+            <div class="goal-box">
+                <span class="goal-big">기본적인 웹사이트를 스스로 만들 수 있는 사람 🌐</span>
+                <p>
+                    웹 프로그래밍에 대한 이해를 더 높이고,<br>
+                    기본적인 웹사이트를 스스로 만들 수 있는 사람이 되고 싶습니다.<br><br>
+                    또 팀원들과 함께 프로젝트를 성공적으로 완성하면서<br>
+                    협업 경험도 쌓고 싶습니다.
+                </p>
+            </div>
+            <div class="thank-you">
+                <span class="ty-emoji">🙇🏻‍♀️</span>
+                <div class="ty-big">감사합니다~</div>
+                <div class="ty-sub">잘 부탁드립니다 🙏🏻</div>
+            </div>
         </div>
+    </div>
 
-        <div class="thanks">
-            <h2>감사합니다~</h2>
-            <h3>잘 부탁드립니다!!</h3>
-        </div>
-    </body>
+    <script>
+        const pages   = ['home', 'whoami', 'weapon', 'teammate', 'aim'];
+        const navIds  = ['nav-home', 'nav-whoami', 'nav-weapon', 'nav-teammate', 'nav-aim'];
+
+        function goTo(pageId) {
+            pages.forEach(id => document.getElementById(id).classList.remove('active'));
+            navIds.forEach(id => document.getElementById(id).classList.remove('active'));
+
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
 </html>
